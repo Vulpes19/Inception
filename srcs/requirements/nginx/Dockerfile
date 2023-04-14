@@ -1,0 +1,24 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Dockerfile                                         :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/04/14 14:32:39 by abaioumy          #+#    #+#              #
+#    Updated: 2023/04/14 14:32:42 by abaioumy         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+FROM debian:buster
+
+RUN apt-get update && apt-get upgrade -y && apt-get install nginx -y
+
+COPY conf/default.conf /etc/nginx/conf.d/
+COPY tools/index.html /var/www/html
+COPY conf/nginx-selfsigned.crt /etc/ssl/certs/
+COPY conf/nginx-selfsigned.key /etc/ssl/private/
+
+EXPOSE 443
+
+CMD ["nginx", "-g", "daemon off;"]
