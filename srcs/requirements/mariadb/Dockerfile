@@ -6,7 +6,7 @@
 #    By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/14 14:32:30 by abaioumy          #+#    #+#              #
-#    Updated: 2023/04/26 12:23:17 by abaioumy         ###   ########.fr        #
+#    Updated: 2023/04/26 14:13:22 by abaioumy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,4 +24,4 @@ RUN chmod +x /scripts/create_db.sh
 
 EXPOSE 3306
 
-ENTRYPOINT ["bash", "/scripts/create_db.sh"]
+CMD ["bash", "/scripts/create_db.sh"]
