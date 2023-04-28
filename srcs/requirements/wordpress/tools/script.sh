@@ -1,24 +1,19 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Dockerfile                                         :+:      :+:    :+:    #
+#    script.sh                                          :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/04/14 14:32:39 by abaioumy          #+#    #+#              #
-#    Updated: 2023/04/28 09:17:06 by abaioumy         ###   ########.fr        #
+#    Created: 2023/04/27 14:08:41 by abaioumy          #+#    #+#              #
+#    Updated: 2023/04/28 11:05:05 by abaioumy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-FROM debian:buster
+#!/bin/bash
 
-RUN apt-get update && apt-get upgrade -y && apt-get install nginx -y
-
-COPY conf/default.conf /etc/nginx/sites-available/default
-COPY tools/index.html /var/www/html
-COPY conf/nginx-selfsigned.crt /etc/ssl/certs/
-COPY conf/nginx-selfsigned.key /etc/ssl/private/
-
-EXPOSE 443
-
-CMD ["nginx", "-g", "daemon off;"]
+#download Wordpress core files to the specified directory
+wp core download --allow-root --path=/var/www/wordpress
+wp core config --allow-root --path=/var/www/wordpress --dbname=wordpress --dbuser=root --dbpass=root --dbhost=mysql
+wp core install --allow-root --path=/var/www/wordpress --url=localhost:8000 --title=inception --admin_user=admin --admin_password=admin --allow-root
+exec "$@"

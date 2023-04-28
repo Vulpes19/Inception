@@ -6,26 +6,24 @@
 #    By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/14 16:01:48 by abaioumy          #+#    #+#              #
-#    Updated: 2023/04/14 18:08:57 by abaioumy         ###   ########.fr        #
+#    Updated: 2023/04/28 11:03:04 by abaioumy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 FROM debian:buster
 
-RUN apt-get update && apt-get install -y \
-    php7.3 \
-    php7.3-fpm \
-    php7.3-mysql \
-    curl \
-    wget \
-    unzip \
-    vim \
+#Installs php, php-fpm, php-mysql
+RUN apt-get update && apt-get install -y php7.3 php7.3-fpm php7.3-mysql mariadb-client curl
+#Downloads wordpress command line interface
+RUN curl -O -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+#Makes the file executable and move it in PATH to use it as the command wp
+RUN chmod +x wp-cli.phar && mv wp-cli.phar /usr/local/bin/wp
 
-RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+COPY ./tools/script.sh /script.sh
+COPY ./tools/www.conf /etc/php/7.3/fpm/pool.d/
 
-COPY ./tools/script.sh /scripts/script.sh
-COPY ./www.conf /etc/php/7.3/fpm/pool.d/www.conf
+RUN chmod +x script.sh
+RUN mkdir /run/php
 
-EXPOSE 9000
-
-CMD ["php-fpm7.3", "-F"]
+CMD ["sh", "script.sh"]
+CMD ["php-fpm", "-R","-F"]
