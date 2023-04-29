@@ -6,7 +6,7 @@
 #    By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/14 14:37:42 by abaioumy          #+#    #+#              #
-#    Updated: 2023/04/28 13:54:39 by abaioumy         ###   ########.fr        #
+#    Updated: 2023/04/29 13:30:10 by abaioumy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,9 +14,9 @@
 
 service mysql start
 #creating database
-mysql -u root -e "CREATE DATABASE WordPress;"
+echo "CREATE DATABASE WordPress;" >> data.sql 
 
-mysql -u root -e "CREATE USER 'Ayman'@'%' IDENTIFIED BY 'Vulpes19';"
-mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO 'Ayman'@'%' WITH GRANT OPTION;"
+echo "CREATE USER 'Ayman'@'%' IDENTIFIED BY 'Vulpes19';" >> data.sql
+echo "GRANT ALL PRIVILEGES ON *.* TO 'Ayman'@'%' WITH GRANT OPTION;" >> data.sql
 
-mysql -u root WordPress
+mysql < data.sql

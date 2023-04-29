@@ -6,7 +6,7 @@
 #    By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/14 16:01:48 by abaioumy          #+#    #+#              #
-#    Updated: 2023/04/28 11:03:04 by abaioumy         ###   ########.fr        #
+#    Updated: 2023/04/29 14:14:36 by abaioumy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,5 +25,5 @@ COPY ./tools/www.conf /etc/php/7.3/fpm/pool.d/
 RUN chmod +x script.sh
 RUN mkdir /run/php
 
-CMD ["sh", "script.sh"]
+ENTRYPOINT ["bash", "script.sh"]
 CMD ["php-fpm", "-R","-F"]
