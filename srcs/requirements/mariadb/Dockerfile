@@ -6,7 +6,7 @@
 #    By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/14 14:32:30 by abaioumy          #+#    #+#              #
-#    Updated: 2023/04/28 13:54:29 by abaioumy         ###   ########.fr        #
+#    Updated: 2023/04/30 18:03:01 by abaioumy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ COPY /tools/create_db.sh /scripts/
 
 RUN chmod +x /scripts/create_db.sh
 
+COPY ./tools/50-server.cnf /etc/mysql/mariadb.conf.d/
 # RUN /scripts/create_db.sh
 
 EXPOSE 3306
