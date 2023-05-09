@@ -6,13 +6,13 @@
 #    By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/14 14:32:30 by abaioumy          #+#    #+#              #
-#    Updated: 2023/04/30 18:03:01 by abaioumy         ###   ########.fr        #
+#    Updated: 2023/05/08 11:53:05 by abaioumy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 FROM debian:buster
 
-RUN apt-get update && apt-get upgrade -y
+RUN apt-get update && apt-get  upgrade -y
 RUN apt-get install mariadb-server -y
 
 COPY conf/ /etc/mysql/
@@ -27,4 +27,4 @@ EXPOSE 3306
 
 RUN ./scripts/create_db.sh
 
-CMD ["mysqld"]
+CMD ["mysqld", "--lower_case_table_names=1"]
