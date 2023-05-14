@@ -1,2 +1,1 @@
-nginx-selfsigned.crt
-nginx-selfsigned.key
+**.env

@@ -6,12 +6,12 @@
 #    By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/09 10:24:42 by abaioumy          #+#    #+#              #
-#    Updated: 2023/05/11 11:53:44 by abaioumy         ###   ########.fr        #
+#    Updated: 2023/05/14 13:35:32 by abaioumy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-WORDPRESS_DATA = srcs/data/wordpress
-MARIADB_DATA = srcs/data/mariadb
+WORDPRESS_DATA = /home/abaioumy/data/wordpress
+MARIADB_DATA = /home/abaioumy/data/mariadb
 DOCKER_COMPOSE_FILE = srcs/docker-compose.yml
 WORDPRESS_CONTAINER = wordpress
 MARIADB_CONTAINER = mariadb

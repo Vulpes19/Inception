@@ -6,7 +6,7 @@
 #    By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/14 14:32:30 by abaioumy          #+#    #+#              #
-#    Updated: 2023/05/11 11:56:35 by abaioumy         ###   ########.fr        #
+#    Updated: 2023/05/14 13:32:51 by abaioumy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,6 @@ COPY ./tools/50-server.cnf /etc/mysql/mariadb.conf.d/
 
 EXPOSE 3306
 
-RUN ./scripts/create_db.sh
+ENTRYPOINT ["sh", "./scripts/create_db.sh"]
 
-CMD ["mysqld", "--lower_case_table_names=1"]
+CMD ["mysqld"]

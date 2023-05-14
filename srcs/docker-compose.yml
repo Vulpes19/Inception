@@ -3,19 +3,12 @@ services:
   wordpress:
     container_name: wordpress
     build: requirements/wordpress
-    # ports:
-    #   - "9000:9000"
     networks:
       - wordpress
     depends_on:
       - mariadb
     env_file:
       - .env
-    environment:
-      - WORDPRESS_DB_HOST=mariadb
-      - WORDPRESS_DB_NAME=WordPress
-      - WORDPRESS_DB_PASSWORD=Vulpes19
-      - WORDPRESS_DB_USER=Ayman
     restart: always
     init: true
     volumes:
@@ -23,18 +16,10 @@ services:
   mariadb:
     container_name: mariadb
     build: requirements/mariadb
-    # image: mariadb
-    ports:
-      - "3306:3306"
     networks:
       - wordpress
     env_file:
       - .env
-    environment:
-      MYSQL_USER: Ayman
-      MYSQL_DATABASE: WordPress
-      MYSQL_PASSWORD: Vulpes19
-      MYSQL_ROOT_PASSWORD: SupremeLeader
     restart: always
     init: true
     volumes:
@@ -60,13 +45,13 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: /Users/abaioumy/Documents/Inception/srcs/data/mariadb
+      device: /home/abaioumy/data/mariadb
       o: bind
   wordpress_files:
     driver: local
     driver_opts:
       type: none
-      device: /Users/abaioumy/Documents/Inception/srcs/data/wordpress
+      device: /home/abaioumy/data/wordpress
       o: bind
 networks:
   wordpress:
